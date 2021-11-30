@@ -38,7 +38,7 @@ contract('FundSwap', (accounts)=>{
         
     })
 
-    describe('CB token purchasing = buyTokens()', async() =>{
+    describe('CB token purchasing = buycbTokens()', async() =>{
 
         let result;
         before(async()=>{
