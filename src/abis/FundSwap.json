@@ -1,0 +1,537 @@
+{
+  "contractName": "FundSwap",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract CbToken",
+          "name": "_cbToken",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "cbToken",
+      "outputs": [
+        {
+          "internalType": "contract CbToken",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract CbToken\",\"name\":\"_cbToken\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"cbToken\",\"outputs\":[{\"internalType\":\"contract CbToken\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"name\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/FundSwap.sol\":\"FundSwap\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/CbToken.sol\":{\"keccak256\":\"0x676200289dbff4d2dd0e749a8820521b8348827afa588784e60073180b1b7fe7\",\"urls\":[\"bzz-raw://d1ab73f22f28e68e208fb4f36c61bcbf100b20372239d5761d9770aeaf6bf30c\",\"dweb:/ipfs/QmfZUZsasRgyXAi8GnBHkbsmFwxYMTTNDpe5k26BYXmHwa\"]},\"/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/FundSwap.sol\":{\"keccak256\":\"0xb755136b2479fc37267a5f4eb41bb829f4c20d186b50c4d131793c80b4b362dd\",\"urls\":[\"bzz-raw://f908158dbb9dfaf0f9ac59742078669e33cb6d7f57e11305b981cbe5012313b5\",\"dweb:/ipfs/QmYMfQafW5mqkiDJj7M3jpdoc3xdGQQqEiafzAedCeariZ\"]}},\"version\":1}",
+  "bytecode": "0x60806040526040518060400160405280600981526020017f46756e64205377617000000000000000000000000000000000000000000000008152506000908051906020019061004f9291906100d7565b5034801561005c57600080fd5b5060405161038c38038061038c8339818101604052602081101561007f57600080fd5b810190808051906020019092919050505080600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505061017c565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061011857805160ff1916838001178555610146565b82800160010185558215610146579182015b8281111561014557825182559160200191906001019061012a565b5b5090506101539190610157565b5090565b61017991905b8082111561017557600081600090555060010161015d565b5090565b90565b6102018061018b6000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c806306fdde031461003b578063a34ee1b4146100be575b600080fd5b610043610108565b6040518080602001828103825283818151815260200191508051906020019080838360005b83811015610083578082015181840152602081019050610068565b50505050905090810190601f1680156100b05780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6100c66101a6565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561019e5780601f106101735761010080835404028352916020019161019e565b820191906000526020600020905b81548152906001019060200180831161018157829003601f168201915b505050505081565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a72315820518f994d316686736e3a06500cde3b72d2fd301c191b7383f170ca4c7ac4161964736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c806306fdde031461003b578063a34ee1b4146100be575b600080fd5b610043610108565b6040518080602001828103825283818151815260200191508051906020019080838360005b83811015610083578082015181840152602081019050610068565b50505050905090810190601f1680156100b05780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6100c66101a6565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561019e5780601f106101735761010080835404028352916020019161019e565b820191906000526020600020905b81548152906001019060200180831161018157829003601f168201915b505050505081565b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a72315820518f994d316686736e3a06500cde3b72d2fd301c191b7383f170ca4c7ac4161964736f6c63430005100032",
+  "sourceMap": "54:171:2:-;;;78:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;148:74;8:9:-1;5:2;;;30:1;27;20:12;5:2;148:74:2;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;148:74:2;;;;;;;;;;;;;;;;206:8;196:7;;:18;;;;;;;;;;;;;;;;;;148:74;54:171;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "54:171:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;54:171:2;;;;;;;;;;;;;;;;;;;;;;;;78:32;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;78:32:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;117:22;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;78:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;117:22::-;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity >0.5.0;\r\n\r\nimport \"./CbToken.sol\";\r\n\r\ncontract FundSwap{\r\n    string public name = \"Fund Swap\";\r\n    CbToken public cbToken;\r\n\r\n    constructor (CbToken _cbToken) public{\r\n        cbToken = _cbToken;\r\n    }\r\n}",
+  "sourcePath": "D:/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/FundSwap.sol",
+  "ast": {
+    "absolutePath": "/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/FundSwap.sol",
+    "exportedSymbols": {
+      "FundSwap": [
+        380
+      ]
+    },
+    "id": 381,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 363,
+        "literals": [
+          "solidity",
+          ">",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "absolutePath": "/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/CbToken.sol",
+        "file": "./CbToken.sol",
+        "id": 364,
+        "nodeType": "ImportDirective",
+        "scope": 381,
+        "sourceUnit": 181,
+        "src": "27:23:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 380,
+        "linearizedBaseContracts": [
+          380
+        ],
+        "name": "FundSwap",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 367,
+            "name": "name",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "78:32:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 365,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "78:6:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "46756e642053776170",
+              "id": 366,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "99:11:2",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_a8cae72fd98b6ec63760c95cc4c3f52075b6d46b36e9c6342a9b4768bf7714c5",
+                "typeString": "literal_string \"Fund Swap\""
+              },
+              "value": "Fund Swap"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 369,
+            "name": "cbToken",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "117:22:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_CbToken_$180",
+              "typeString": "contract CbToken"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 368,
+              "name": "CbToken",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 180,
+              "src": "117:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_CbToken_$180",
+                "typeString": "contract CbToken"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 378,
+              "nodeType": "Block",
+              "src": "185:37:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 376,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 374,
+                      "name": "cbToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 369,
+                      "src": "196:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_CbToken_$180",
+                        "typeString": "contract CbToken"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 375,
+                      "name": "_cbToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 371,
+                      "src": "206:8:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_CbToken_$180",
+                        "typeString": "contract CbToken"
+                      }
+                    },
+                    "src": "196:18:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CbToken_$180",
+                      "typeString": "contract CbToken"
+                    }
+                  },
+                  "id": 377,
+                  "nodeType": "ExpressionStatement",
+                  "src": "196:18:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 379,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 372,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 371,
+                  "name": "_cbToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 379,
+                  "src": "161:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_CbToken_$180",
+                    "typeString": "contract CbToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 370,
+                    "name": "CbToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 180,
+                    "src": "161:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CbToken_$180",
+                      "typeString": "contract CbToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "160:18:2"
+            },
+            "returnParameters": {
+              "id": 373,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "185:0:2"
+            },
+            "scope": 380,
+            "src": "148:74:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 381,
+        "src": "54:171:2"
+      }
+    ],
+    "src": "0:225:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/FundSwap.sol",
+    "exportedSymbols": {
+      "FundSwap": [
+        380
+      ]
+    },
+    "id": 381,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 363,
+        "literals": [
+          "solidity",
+          ">",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:2"
+      },
+      {
+        "absolutePath": "/D/Preetam Sarkar 4th and final year project/Fund-Raising-Defi-App/src/contracts/CbToken.sol",
+        "file": "./CbToken.sol",
+        "id": 364,
+        "nodeType": "ImportDirective",
+        "scope": 381,
+        "sourceUnit": 181,
+        "src": "27:23:2",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 380,
+        "linearizedBaseContracts": [
+          380
+        ],
+        "name": "FundSwap",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 367,
+            "name": "name",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "78:32:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 365,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "78:6:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "46756e642053776170",
+              "id": 366,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "99:11:2",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_a8cae72fd98b6ec63760c95cc4c3f52075b6d46b36e9c6342a9b4768bf7714c5",
+                "typeString": "literal_string \"Fund Swap\""
+              },
+              "value": "Fund Swap"
+            },
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 369,
+            "name": "cbToken",
+            "nodeType": "VariableDeclaration",
+            "scope": 380,
+            "src": "117:22:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_contract$_CbToken_$180",
+              "typeString": "contract CbToken"
+            },
+            "typeName": {
+              "contractScope": null,
+              "id": 368,
+              "name": "CbToken",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 180,
+              "src": "117:7:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_CbToken_$180",
+                "typeString": "contract CbToken"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 378,
+              "nodeType": "Block",
+              "src": "185:37:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 376,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 374,
+                      "name": "cbToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 369,
+                      "src": "196:7:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_CbToken_$180",
+                        "typeString": "contract CbToken"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 375,
+                      "name": "_cbToken",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 371,
+                      "src": "206:8:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_contract$_CbToken_$180",
+                        "typeString": "contract CbToken"
+                      }
+                    },
+                    "src": "196:18:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CbToken_$180",
+                      "typeString": "contract CbToken"
+                    }
+                  },
+                  "id": 377,
+                  "nodeType": "ExpressionStatement",
+                  "src": "196:18:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 379,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 372,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 371,
+                  "name": "_cbToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 379,
+                  "src": "161:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_CbToken_$180",
+                    "typeString": "contract CbToken"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 370,
+                    "name": "CbToken",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 180,
+                    "src": "161:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_CbToken_$180",
+                      "typeString": "contract CbToken"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "160:18:2"
+            },
+            "returnParameters": {
+              "id": 373,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "185:0:2"
+            },
+            "scope": 380,
+            "src": "148:74:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 381,
+        "src": "54:171:2"
+      }
+    ],
+    "src": "0:225:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x41a1f8211a96B30C597416fFd6f59aba2ae7A0C1",
+      "transactionHash": "0xb58173e8ded88311ed358cd98c2e6bd615d9e5889d2c469a5bde0e5aec3e855d"
+    }
+  },
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2021-11-30T19:01:48.774Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
