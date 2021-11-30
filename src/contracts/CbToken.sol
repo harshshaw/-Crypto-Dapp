@@ -1,6 +1,6 @@
 pragma solidity >0.5.0;
 
-contract DappToken {
+contract CbToken {
     string  public name = "CB Token";
     string  public symbol = "CB";
     uint256 public totalSupply = 100000000000000000000000000; // 100 million tokens

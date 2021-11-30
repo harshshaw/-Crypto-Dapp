@@ -76,18 +76,18 @@ pragma solidity >0.5.0;
 
 
 import "./DappToken.sol";
-import "./DaiToken.sol";
+// import "./DaiToken.sol";
 
 contract TokenFarm{
     string public name = "Dapp Token Farm";
     DappToken public dappToken;
-    DaiToken public daiToken;
+    // DaiToken public daiToken;
     address public owner;
-    constructor(DappToken _dappToken, DaiToken _daiToken) public{
-        dappToken = _dappToken;
-        daiToken = _daiToken;
-        owner = msg.sender;
-    }
+    // constructor(DappToken _dappToken, DaiToken _daiToken) public{
+    //     dappToken = _dappToken;
+    //     daiToken = _daiToken;
+    //     owner = msg.sender;
+    // }
 
     address[] public stackers;
     mapping(address => uint) public stackingBalance;
@@ -101,7 +101,7 @@ contract TokenFarm{
         require(_amount >0, "amount cannot be 0");
 
         // transfer mock dai token to this contract for staking
-        daiToken.transferFrom(msg.sender,address(this),_amount);
+        // daiToken.transferFrom(msg.sender,address(this),_amount);
 
         // update stacking balance
         stackingBalance[msg.sender] = stackingBalance[msg.sender] + _amount;
@@ -127,7 +127,7 @@ contract TokenFarm{
         require(balance > 0, "staking balance cannot be 0");
 
         // Transfer Mock Dai tokens to this contract for staking
-        daiToken.transfer(msg.sender, balance);
+        // daiToken.transfer(msg.sender, balance);
 
         // Reset staking balance
         stackingBalance[msg.sender] = 0;
@@ -146,7 +146,7 @@ contract TokenFarm{
             address recipient = stackers[i];
             uint balance = stackingBalance[recipient];
             if(balance > 0) {
-                dappToken.transfer(recipient, balance);
+                // dappToken.transfer(recipient, balance);
             }
         }
     }
