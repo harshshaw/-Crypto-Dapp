@@ -99,13 +99,14 @@ contract('FundSwap', (accounts)=>{
             assert.equal(fundSwapBalance.toString(), tokens('2.5'))
 
             // event emitted to check all transaction details was correct
-            // const event = result.logs[0].args;
+            const event = result.logs[0].args;
             // checking transaction details
-            // assert.equal(event.receiverAccount,accounts[2]);
-            // assert.equal(event.cbToken, cbToken.address);
-            // assert.equal(event.fundSwap,fundSwap.address);
-            // assert.equal(event.amount.toString(),tokens('200'));
-            // assert.equal(event.rate.toString(),'20');
+            assert.equal(event.receiverAccount,fundSwap.address);
+            assert.equal(event.cbToken, cbToken.address);
+            assert.equal(event.senderAccount,accounts[2]);
+            assert.equal(event.amount.toString(),tokens('150'));
+            assert.equal(event.rate.toString(),'20');
+            assert.equal(event.etherAmount.toString(),tokens('7.5'));
         })
     })
 })

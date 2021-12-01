@@ -19,6 +19,15 @@ contract FundSwap{
         uint rate
     );
 
+    event TokenSold(
+        address receiverAccount,
+        address cbToken,
+        address senderAccount,
+        uint256 amount,
+        uint rate,
+        uint etherAmount
+    );
+
     // function for buying the CB Tokens
     function buycbTokens() public payable{
         // 1 ether = 20 CB Tokens
@@ -52,6 +61,8 @@ contract FundSwap{
         cbToken.transferFrom(msg.sender,address(this),_amount);
         // transfer the amount in Wei form of ether
         msg.sender.transfer(etherAmount);
+
+        emit TokenSold(address(this),address(cbToken),msg.sender,_amount,rate,etherAmount);
 
 
     }
