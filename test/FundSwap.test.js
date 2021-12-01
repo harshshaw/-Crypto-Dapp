@@ -113,4 +113,25 @@ contract('FundSwap', (accounts)=>{
 
         })
     })
+
+    describe('Project creation = createProject()', async() =>{
+
+        it('project successfully created', async()=>{
+            // create project
+            const result = await fundSwap.createProject(tokens('500'),{from:accounts[1]});
+
+            // getting the total project
+            const projCount = await fundSwap.totalProject();
+            assert.equal(projCount.toString(),'1');
+
+            // checking emitted event 
+            const event = result.logs[0].args;
+            assert.equal(event.creator, accounts[1]);
+            assert.equal(event.goal, tokens('500'));
+            assert.equal(event.currentAmount, tokens('0'));
+            assert.equal(event.goalCompleted, false);
+            assert.equal(event.investorRewarded, false);
+
+        })
+    })
 })
