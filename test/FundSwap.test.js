@@ -53,9 +53,13 @@ contract('FundSwap', (accounts)=>{
             const investorBalance = await cbToken.balanceOf(accounts[2]);
             assert.equal(investorBalance, tokens('200'));
 
-            // checking FundSwap balance
-            const fundSwapBalance = await cbToken.balanceOf(fundSwap.address);
-            assert.equal(fundSwapBalance,tokens('99999800'))
+            // checking FundSwap balance and token balance
+            const fundSwapTokenBalance = await cbToken.balanceOf(fundSwap.address);
+            assert.equal(fundSwapTokenBalance,tokens('99999800'))
+
+            const fundSwapBalance = await web3.eth.getBalance(fundSwap.address)
+            // console.log(ethSwapBalance)
+            assert.equal(fundSwapBalance.toString(), tokens('10'))
 
             // event emitted to check all transaction details was correct
             const event = result.logs[0].args;
