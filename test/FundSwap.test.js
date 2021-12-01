@@ -71,4 +71,41 @@ contract('FundSwap', (accounts)=>{
             assert.equal(event.rate.toString(),'20');
         })
     })
+
+    describe('CB token selling = sellcbTokens()', async() =>{
+
+        let result;
+        before(async()=>{
+            // approving Fund Swap to sell the tokens from the accounts
+
+            await cbToken.approve(fundSwap.address,tokens('500'),{from : accounts[2]});
+            // token selling at a fixed rate
+            result = await fundSwap.sellcbTokens(tokens('150'),{from:accounts[2]});
+            // console.log(result.logs[0].args.amount.toString());
+        })
+
+        it('token selling details', async()=>{
+
+            // checking investor balance
+            const investorBalance = await cbToken.balanceOf(accounts[2]);
+            assert.equal(investorBalance, tokens('50'));
+
+            // checking FundSwap balance and token balance
+            const fundSwapTokenBalance = await cbToken.balanceOf(fundSwap.address);
+            assert.equal(fundSwapTokenBalance,tokens('99999950'))
+
+            const fundSwapBalance = await web3.eth.getBalance(fundSwap.address)
+            // console.log(fundSwapBalance)
+            assert.equal(fundSwapBalance.toString(), tokens('2.5'))
+
+            // event emitted to check all transaction details was correct
+            // const event = result.logs[0].args;
+            // checking transaction details
+            // assert.equal(event.receiverAccount,accounts[2]);
+            // assert.equal(event.cbToken, cbToken.address);
+            // assert.equal(event.fundSwap,fundSwap.address);
+            // assert.equal(event.amount.toString(),tokens('200'));
+            // assert.equal(event.rate.toString(),'20');
+        })
+    })
 })

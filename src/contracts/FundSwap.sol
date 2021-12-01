@@ -37,7 +37,7 @@ contract FundSwap{
     }
 
     // function to sell CB Tokens
-    function sellcbToken(uint _amount) public {
+    function sellcbTokens(uint _amount) public {
         // 1 ether = 20 CB Token
         // checking if there is enough balance to sell
         require(_amount <= cbToken.balanceOf(msg.sender));
