@@ -107,6 +107,10 @@ contract('FundSwap', (accounts)=>{
             assert.equal(event.amount.toString(),tokens('150'));
             assert.equal(event.rate.toString(),'20');
             assert.equal(event.etherAmount.toString(),tokens('7.5'));
+
+            // checking for investor can sell more tokens than he has currently
+            await fundSwap.sellcbTokens(tokens('150'),{from:accounts[2]}).should.be.rejected;
+
         })
     })
 })
