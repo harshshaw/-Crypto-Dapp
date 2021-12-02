@@ -7,6 +7,7 @@ contract FundSwap{
     uint public rate = 20;
     CbToken public cbToken;
     uint public totalProject = 0;
+    uint public rewardAmount = 30000000000000000000;
 
 
     struct Project{
@@ -16,7 +17,11 @@ contract FundSwap{
         bool goalCompleted;
         bool investorRewarded;   
     }
+    // mapping for storing all the projects created for donation
     mapping( uint =>Project) public projects;
+
+    // mapping for storing addresses of who donated to whom 
+    mapping(address =>address[]) public addressInvestor;
 
     constructor (CbToken _cbToken) public{
         cbToken = _cbToken;
@@ -94,6 +99,47 @@ contract FundSwap{
         totalProject++;
         projects[totalProject] = Project(msg.sender,_goal,0,false,false);
         emit ProjectCreate(msg.sender,_goal,0,false,false);
+    }
+
+    // function for rewarding the investor
+    function reward(Project memory _proj,address _creator) public returns(Project memory _project){
+        uint balance = addressInvestor[_creator].length * rewardAmount;
+        if(balance <=cbToken.balanceOf(msg.sender)){
+            // require(balance <=cbToken.balanceOf(msg.sender),"Not enough token to reward from CbSwap");
+            for(uint i=0; i< addressInvestor[_creator].length ; i++){
+                cbToken.transfer(addressInvestor[_creator][i],rewardAmount);
+            }
+            // investor rewarded
+            _proj.investorRewarded = !_proj.investorRewarded;
+            _project = _proj;
+            return _project;
+        }else{
+            _project = _proj;
+            return _project;        
+        }
+        
+    }
+
+    // function to contribute CB tokens to the opensource projects
+    function donate(uint _id, address _to,uint _amount) public{
+        // 
+        require(_amount<= cbToken.balanceOf(msg.sender));
+        Project memory _proj = projects[_id];
+        if(_proj.creator == _to){
+            cbToken.transferFrom(msg.sender, _to, _amount);
+            addressInvestor[_proj.creator].push(msg.sender);
+            _proj.currentAmount += _amount;
+            if(_proj.currentAmount >= _proj.goal && !_proj.goalCompleted){
+                // goal completed true
+                _proj.goalCompleted = !_proj.goalCompleted;
+                // call the reward function with _proj and address of creator as parameter
+                _proj = reward(_proj,_to);
+                // investor rewarded
+                // _proj.investorRewarded = !_proj.investorRewarded;
+            }
+        }
+        // set the updated project state
+        projects[_id] = _proj;
     }
 
 
