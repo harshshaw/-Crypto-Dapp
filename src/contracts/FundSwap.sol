@@ -83,7 +83,7 @@ contract FundSwap{
         // transfer of CB token to the Fund Swap contract from the investor
         cbToken.transferFrom(msg.sender,address(this),_amount);
         // transfer the amount in Wei form of ether
-        msg.sender.transfer(etherAmount);
+        payable(msg.sender).transfer(etherAmount);
 
         emit TokenSold(address(this),address(cbToken),msg.sender,_amount,rate,etherAmount);
 
