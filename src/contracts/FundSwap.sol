@@ -12,7 +12,10 @@ contract FundSwap{
 
 
     struct Project{
+        string projectName;
         address creator;
+        string description;
+        string projectLink;
         uint goal;
         uint currentAmount;
         bool goalCompleted;
@@ -103,9 +106,9 @@ contract FundSwap{
     }
 
     // function for creating project
-    function createProject(uint _goal) public{
+    function createProject(string memory _name,string memory _description,string memory _link,uint _goal) public{
         totalProject++;
-        projects[totalProject] = Project(msg.sender,_goal,0,false,false);
+        projects[totalProject] = Project(_name,msg.sender,_description,_link,_goal,0,false,false);
         emit ProjectCreate(msg.sender,_goal,0,false,false);
     }
 
