@@ -1,4 +1,5 @@
 pragma solidity >0.5.0;
+pragma experimental ABIEncoderV2;
 
 import "./CbToken.sol";
 
@@ -56,6 +57,13 @@ contract FundSwap{
         bool investorRewarded
     );
 
+    // event for donation
+    event Donation(
+        address creator,
+        uint id,
+        uint amount
+    );
+
     // function for buying the CB Tokens
     function buycbTokens() public payable{
         // 1 ether = 20 CB Tokens
@@ -74,25 +82,25 @@ contract FundSwap{
     }
 
     // function to sell CB Tokens
-    function sellcbTokens(uint _amount) public {
-        // 1 ether = 20 CB Token
-        // checking if there is enough balance to sell
-        require(_amount <= cbToken.balanceOf(msg.sender));
+    // function sellcbTokens(uint _amount) public {
+    //     // 1 ether = 20 CB Token
+    //     // checking if there is enough balance to sell
+    //     require(_amount <= cbToken.balanceOf(msg.sender));
         
-        // calculating ether amount from token
-        uint etherAmount = _amount / rate;
+    //     // calculating ether amount from token
+    //     uint etherAmount = _amount / rate;
 
-        // checking that Fund Swap has enough balance
-        require(address(this).balance >= etherAmount);
+    //     // checking that Fund Swap has enough balance
+    //     require(address(this).balance >= etherAmount);
 
-        // transfer of CB token to the Fund Swap contract from the investor
-        cbToken.transferFrom(msg.sender,address(this),_amount);
-        // transfer the amount in Wei form of ether
-        payable(msg.sender).transfer(etherAmount);
+    //     // transfer of CB token to the Fund Swap contract from the investor
+    //     cbToken.transferFrom(msg.sender,address(this),_amount);
+    //     // transfer the amount in Wei form of ether
+    //     payable(msg.sender).transfer(etherAmount);
 
-        emit TokenSold(address(this),address(cbToken),msg.sender,_amount,rate,etherAmount);
+    //     emit TokenSold(address(this),address(cbToken),msg.sender,_amount,rate,etherAmount);
 
-    }
+    // }
 
     // function for creating project
     function createProject(uint _goal) public{
@@ -140,6 +148,7 @@ contract FundSwap{
         }
         // set the updated project state
         projects[_id] = _proj;
+        emit Donation(_to, _id, _amount);
     }
 
 
