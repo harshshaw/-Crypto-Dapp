@@ -46,7 +46,6 @@ contract('FundSwap', (accounts)=>{
         before(async()=>{
             // token purchasing at a fixed rate from ether to cb tokens
             result = await fundSwap.buycbTokens({from: accounts[2], value: tokens('10')})
-            // console.log(result.logs[0].args.amount.toString());
         })
 
         it('token purchasing details', async()=>{
@@ -59,8 +58,8 @@ contract('FundSwap', (accounts)=>{
             const fundSwapTokenBalance = await cbToken.balanceOf(fundSwap.address);
             assert.equal(fundSwapTokenBalance,tokens('99999800'))
 
+            // checking the balance of fund swap contract
             const fundSwapBalance = await web3.eth.getBalance(fundSwap.address)
-            // console.log(ethSwapBalance)
             assert.equal(fundSwapBalance.toString(), tokens('10'))
 
             // event emitted to check all transaction details was correct
@@ -78,12 +77,11 @@ contract('FundSwap', (accounts)=>{
 
         let result;
         before(async()=>{
-            // approving Fund Swap to sell the tokens from the accounts
 
+            // approving Fund Swap to sell the tokens from the accounts
             await cbToken.approve(fundSwap.address,tokens('500'),{from : accounts[2]});
             // token selling at a fixed rate
             result = await fundSwap.sellcbTokens(tokens('150'),{from:accounts[2]});
-            // console.log(result.logs[0].args.amount.toString());
         })
 
         it('token selling details', async()=>{
@@ -95,9 +93,9 @@ contract('FundSwap', (accounts)=>{
             // checking FundSwap balance and token balance
             const fundSwapTokenBalance = await cbToken.balanceOf(fundSwap.address);
             assert.equal(fundSwapTokenBalance,tokens('99999950'))
-
+            
+            // checking the balance of fund swap contract
             const fundSwapBalance = await web3.eth.getBalance(fundSwap.address)
-            // console.log(fundSwapBalance)
             assert.equal(fundSwapBalance.toString(), tokens('2.5'))
 
             // event emitted to check all transaction details was correct
@@ -140,24 +138,24 @@ contract('FundSwap', (accounts)=>{
     describe('project donation = donate()', async ()=>{
         let result,projCount
         before(async()=>{
-            // approving Fund Swap to sell the tokens from the accounts
 
+            // approving Fund Swap to sell the tokens from the accounts
             await cbToken.approve(fundSwap.address,tokens('500'),{from : accounts[2]});
             // token selling at a fixed rate
             result = await fundSwap.donate(1,accounts[1],tokens('20'),{from:accounts[2]});
-            // console.log(result);
-            // console.log(result.logs[0].args.amount.toString());
             // getting the project count
             projCount = await fundSwap.totalProject();
         })
         it('donated to a project successfully but goal not completed', async () => {
+
+            // checking the event emmitted
             const event = result.logs[0].args;
-            // console.log(event)
             assert.equal(await cbToken.balanceOf(accounts[2]),tokens('180'));
             assert.equal(await cbToken.balanceOf(accounts[1]),tokens('20'));
             assert.equal(event.creator,accounts[1]);
             assert.equal(event.id,1);
             assert.equal(event.amount.toString(),tokens('20'));
+            // checking the project details updated or not
             const proj = await fundSwap.projects(projCount);
             assert.equal(proj.creator, accounts[1]);
             assert.equal(proj.goal, tokens('40'));
@@ -170,8 +168,9 @@ contract('FundSwap', (accounts)=>{
             // before donating again current balance is 180
             assert.equal(await cbToken.balanceOf(accounts[2]),tokens('180'));
             result = await fundSwap.donate(1,accounts[1],tokens('20'),{from:accounts[2]});
+            
+            // event emmitted
             const event = result.logs[0].args;
-            // console.log(event)
             // after donation the balance will reduce to 160 than again
             // for goal completing the balance will be 220
             assert.equal(await cbToken.balanceOf(accounts[2]),tokens('220'));
@@ -179,6 +178,8 @@ contract('FundSwap', (accounts)=>{
             assert.equal(event.creator,accounts[1]);
             assert.equal(event.id,1);
             assert.equal(event.amount.toString(),tokens('20'));
+
+            // checking the project details updated or not
             const proj = await fundSwap.projects(projCount);
             assert.equal(proj.creator, accounts[1]);
             assert.equal(proj.goal, tokens('40'));
