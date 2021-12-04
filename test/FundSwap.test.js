@@ -118,7 +118,7 @@ contract('FundSwap', (accounts)=>{
 
         it('project successfully created', async()=>{
             // create project
-            const result = await fundSwap.createProject(tokens('40'),{from:accounts[1]});
+            const result = await fundSwap.createProject("Empowering agriculture","nothing","xyz",tokens('40'),{from:accounts[1]});
 
             // getting the total project
             const projCount = await fundSwap.totalProject();
@@ -172,12 +172,14 @@ contract('FundSwap', (accounts)=>{
             // event emmitted
             const event = result.logs[0].args;
             // after donation the balance will reduce to 160 than again
-            // for goal completing the balance will be 220
-            assert.equal(await cbToken.balanceOf(accounts[2]),tokens('220'));
+            // for goal completing the balance will be 162
+            assert.equal(await cbToken.balanceOf(accounts[2]),tokens('162'));
             assert.equal(await cbToken.balanceOf(accounts[1]),tokens('40'));
             assert.equal(event.creator,accounts[1]);
             assert.equal(event.id,1);
             assert.equal(event.amount.toString(),tokens('20'));
+            // checking the rewarded amount for the addresses
+            assert.equal(await fundSwap.addressReward(accounts[2]),tokens('2'));
 
             // checking the project details updated or not
             const proj = await fundSwap.projects(projCount);

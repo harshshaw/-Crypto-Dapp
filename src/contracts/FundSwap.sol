@@ -8,7 +8,7 @@ contract FundSwap{
     uint public rate = 20;
     CbToken public cbToken;
     uint public totalProject = 0;
-    uint public rewardAmount = 30000000000000000000;
+    uint public rewardAmount = 1000000000000000000;
 
 
     struct Project{
@@ -26,6 +26,10 @@ contract FundSwap{
 
     // mapping for storing addresses of who donated to whom 
     mapping(address =>address[]) public addressInvestor;
+
+    // to get the number of amount in cb token for the 
+    // rewared address on project goal completion
+    mapping(address => uint) public addressReward;
 
     constructor (CbToken _cbToken) public{
         cbToken = _cbToken;
@@ -119,6 +123,8 @@ contract FundSwap{
             // require(balance <=cbToken.balanceOf(msg.sender),"Not enough token to reward from CbSwap");
             for(uint i=0; i< addressInvestor[_creator].length ; i++){
                 cbToken.transfer(addressInvestor[_creator][i],rewardAmount);
+                addressReward[addressInvestor[_creator][i]] += rewardAmount;
+
             }
             // investor rewarded
             _proj.investorRewarded = !_proj.investorRewarded;
