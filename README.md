@@ -38,7 +38,7 @@
 ##### 🌟 Frontend
 - 
 
-## made with 💕 by 👨🏻‍💻: 
+## made with 💕 by 👨‍💻: 
 - [Preetam Sarkar](https://github.com/Leoravoe)
 - [Harsh Shaw](https://github.com/harshshaw)
 - [Kunal Singhal](https://github.com/Kunal-2001)
