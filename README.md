@@ -1,6 +1,7 @@
 <h1 align="center" id="BUIDLIT-Hackathon"> :trophy: BUIDLIT | Polygon India Hackathon</h1>
 
-# CB Swap
+<!-- # CB Swap -->
+<h2 align="center" id="CB-Swap"> CB Swap</h2>
 
 <h2> A Blockchain based DeFinancial application for Fund Raising. </h2>
 
