@@ -3,7 +3,7 @@
 <!-- # CB Swap -->
 <h2 align="center" id="CB-Swap"> CB Swap</h2>
 
-<h2> A Blockchain based DeFinancial application for Fund Raising. </h2>
+<h2 align="center"> A Blockchain based DeFinancial application for Fund Raising. </h2>
 
 <!-- ## 🔗 Links -->
 <!-- - [Video Explanation]() -->
