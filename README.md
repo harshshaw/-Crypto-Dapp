@@ -19,15 +19,15 @@
 - Creating erc20 Token contract
 - Writing proper test for the smart contracts
 
-## 💡 features
+## 💡 Features
 - 
 
 
-## 💻 samples:
+## 💻 Samples:
 <img src="">
 
 
-## 👣 steps to run the project 
+## 👣 Steps to run the project 
 - clone the repo in your local machine
 - do ```npm install``` in root directory
 - do ```npm install``` in ```client```
