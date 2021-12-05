@@ -8,7 +8,7 @@
 
 
 ## ❓ Problem Statement
-> 
+> Entrepreneurs face lot of dilemma before starting a startup or raising fund for their projects. As we all know that starting a venture is not an easy task, there are lot of challenges associated with it. To help our investors to overcome this dilemma we have designed this platform. We have especially introduced a Web3.0 Fund raising Defi App for the Entrepreneurs/Developers for raising fund for their software/hardware projects.
 
 ## 🤔 Challenges we faced
 - 
