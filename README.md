@@ -27,7 +27,7 @@
 <img src="">
 
 
-## 👣 steps to run the project
+## 👣 steps to run the project 📜
 - clone the repo in your local machine
 - do ```npm install``` in root directory
 - do ```npm install``` in ```client```
