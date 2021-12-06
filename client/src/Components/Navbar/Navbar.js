@@ -1,18 +1,18 @@
 import React from "react";
-import Logo from "../../Agri.svg";
+import Logo from "../../wheelbarrow.png";
 
 export default function Navbar() {
   return (
-    <div class="relative bg-white">
+    <div class="relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex justify-between items-center border-b-2 border-gray-200 py-9 md:justify-start md:space-x-10">
-          <div class="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <img class="h-10 w-auto sm:h-10" src={Logo} alt="" />
+        <div class="flex justify-between items-center border-b-2 border-gray-200 py-6 md:justify-start md:space-x-10">
+          <div class="flex w-1/12 justify-start lg:flex-1">
+            <a class="flex flex-col" href="#">
+              <img class="w-auto h-16" src={Logo} alt="" />
             </a>
           </div>
 
-          <nav class="md:flex space-x-12">
+          <nav class="w-6/12 md:flex space-x-10">
             <div class="flex space-x-1">
               <a
                 href="#"
@@ -57,8 +57,30 @@ export default function Navbar() {
                 />
               </svg>
             </div>
+            <div class="flex space-x-1">
+              <a
+                href="#"
+                class="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+                Exchange Tokens
+              </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+            </div>
           </nav>
-          <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <div class="w-5/12 hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <a
               href="#"
               class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
