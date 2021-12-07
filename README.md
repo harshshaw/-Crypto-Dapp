@@ -20,7 +20,12 @@
 - Writing proper test for the smart contracts
 
 ## 💡 Features
-- 
+- We issued our own ERC20 standard token known as Cb token
+- Investor can buy our erc20 token (Cb token)
+- Developer can create a project for fund raising in our platform
+- Developer can set a goal of fund they want to raise for their software/hardware projects
+- Investor can donate to the project with our Cb token
+- All the investor who help to complete the project goal amount for raising will receive Cb token as reward 
 
 
 ## 💻 Samples:
