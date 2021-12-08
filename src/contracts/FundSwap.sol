@@ -8,7 +8,6 @@ contract FundSwap{
     uint public rate = 20;
     CbToken public cbToken;
     uint public totalProject = 0;
-    uint public rewardAmount = 1000000000000000000 * 0.04;
 
 
     struct Project{
@@ -21,7 +20,7 @@ contract FundSwap{
         bool goalCompleted;
         bool investorRewarded;   
     }
-    // struct
+
     // mapping for storing all the projects created for donation
     mapping( uint =>Project) public projects;
 
@@ -29,8 +28,16 @@ contract FundSwap{
     mapping(address =>address[]) public addressInvestor;
 
     // to get the number of amount in cb token for the 
-    // rewared address on project goal completion
+    // reward received on a project goal completion
     mapping(address => mapping(address => uint)) public addressReward;
+
+    // to get the number of amount in cb token for the 
+    // rewared donated on a project
+    mapping(address => mapping(address => uint)) public amountDonated;
+
+    // to keep track of the addresses received reward or not
+    mapping(address => mapping(address => bool)) public rewardReceived;
+
 
     constructor (CbToken _cbToken) public{
         cbToken = _cbToken;
@@ -119,19 +126,24 @@ contract FundSwap{
 
     // function for rewarding the investor
     function reward(Project memory _proj,address _creator) public returns(Project memory _project){
-        uint balance = _proj.currentAmount * rewardAmount;
-        if(balance <=cbToken.balanceOf(msg.sender)){
+        // suppose current amount 40
+        // so balance will be 1.6
+        uint balance = _proj.currentAmount * 4/100;
+        if(balance <= cbToken.balanceOf(msg.sender)){
             // require(balance <=cbToken.balanceOf(msg.sender),"Not enough token to reward from CbSwap");
             for(uint i=0; i< addressInvestor[_creator].length ; i++){
-                cbToken.transfer(addressInvestor[_creator][i],rewardAmount);
-                addressReward[_creator][addressInvestor[_creator][i]] += rewardAmount;
-
+                if(!rewardReceived[_creator][addressInvestor[_creator][i]]){
+                    cbToken.transfer(addressInvestor[_creator][i],amountDonated[_creator][addressInvestor[_creator][i]]*4/100);
+                    addressReward[_creator][addressInvestor[_creator][i]] += amountDonated[_creator][addressInvestor[_creator][i]]*4/100;
+                    rewardReceived[_creator][addressInvestor[_creator][i]] = true;
+                }
             }
             // investor rewarded
             _proj.investorRewarded = !_proj.investorRewarded;
             _project = _proj;
             return _project;
         }else{
+            // noice[1][2] = 15;
             _project = _proj;
             return _project;        
         }
@@ -145,7 +157,9 @@ contract FundSwap{
         Project memory _proj = projects[_id];
         if(_proj.creator == _to){
             cbToken.transferFrom(msg.sender, _to, _amount);
-            addressReward[_proj.creator][msg.sender] +=  _amount;
+            amountDonated[_proj.creator][msg.sender] +=  _amount;
+            if(!rewardReceived[_proj.creator][msg.sender])
+                rewardReceived[_proj.creator][msg.sender] = false;
             addressInvestor[_proj.creator].push(msg.sender);
             _proj.currentAmount += _amount;
             if(_proj.currentAmount >= _proj.goal && !_proj.goalCompleted){
