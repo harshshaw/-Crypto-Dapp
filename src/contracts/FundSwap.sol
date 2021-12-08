@@ -8,7 +8,7 @@ contract FundSwap{
     uint public rate = 20;
     CbToken public cbToken;
     uint public totalProject = 0;
-    uint public rewardAmount = 1000000000000000000;
+    uint public rewardAmount = 1000000000000000000 * 0.04;
 
 
     struct Project{
@@ -21,6 +21,7 @@ contract FundSwap{
         bool goalCompleted;
         bool investorRewarded;   
     }
+    // struct
     // mapping for storing all the projects created for donation
     mapping( uint =>Project) public projects;
 
@@ -29,7 +30,7 @@ contract FundSwap{
 
     // to get the number of amount in cb token for the 
     // rewared address on project goal completion
-    mapping(address => uint) public addressReward;
+    mapping(address => mapping(address => uint)) public addressReward;
 
     constructor (CbToken _cbToken) public{
         cbToken = _cbToken;
@@ -118,12 +119,12 @@ contract FundSwap{
 
     // function for rewarding the investor
     function reward(Project memory _proj,address _creator) public returns(Project memory _project){
-        uint balance = addressInvestor[_creator].length * rewardAmount;
+        uint balance = _proj.currentAmount * rewardAmount;
         if(balance <=cbToken.balanceOf(msg.sender)){
             // require(balance <=cbToken.balanceOf(msg.sender),"Not enough token to reward from CbSwap");
             for(uint i=0; i< addressInvestor[_creator].length ; i++){
                 cbToken.transfer(addressInvestor[_creator][i],rewardAmount);
-                addressReward[addressInvestor[_creator][i]] += rewardAmount;
+                addressReward[_creator][addressInvestor[_creator][i]] += rewardAmount;
 
             }
             // investor rewarded
@@ -144,6 +145,7 @@ contract FundSwap{
         Project memory _proj = projects[_id];
         if(_proj.creator == _to){
             cbToken.transferFrom(msg.sender, _to, _amount);
+            addressReward[_proj.creator][msg.sender] +=  _amount;
             addressInvestor[_proj.creator].push(msg.sender);
             _proj.currentAmount += _amount;
             if(_proj.currentAmount >= _proj.goal && !_proj.goalCompleted){
