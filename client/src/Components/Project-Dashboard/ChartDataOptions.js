@@ -42,7 +42,7 @@ let chartData = {
         label: { fontSize: 10 },
       },
     ],
-    legend: { enabled: false },
+    legend: { enabled: true },
   },
 };
 

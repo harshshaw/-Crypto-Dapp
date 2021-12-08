@@ -37,7 +37,7 @@ function EthereumTrends(props) {
   }, []);
 
   return (
-    <div className="-mt-2.5 bg-black">
+    <div className="-mt-2.5">
       <AgChartsReact options={chartMetaData.options} />
     </div>
   );
