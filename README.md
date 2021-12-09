@@ -23,7 +23,7 @@
 
 ## 💡 Features
 - We issued our own ERC20 standard token known as Cb token
-- Investor can buy our erc20 token (Cb token)
+- Investor can buy our erc20 token (Cb token) in exchange with ethereum
 - Developer can create a project for fund raising in our platform
 - Developer can set a goal of fund they want to raise for their software/hardware projects
 - Investor can donate to the project with our Cb token
