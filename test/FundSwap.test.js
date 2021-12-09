@@ -192,6 +192,8 @@ contract('FundSwap', (accounts)=>{
             assert.equal(proj.currentAmount, tokens('20'));
             assert.equal(proj.goalCompleted, false);
             assert.equal(proj.investorRewarded, false);
+
+            
         })
         it('donated to a project successfully from account 2 and account 3 but goal completed', async () => {
 
@@ -256,6 +258,12 @@ contract('FundSwap', (accounts)=>{
 
             // checking the amount donated for the addresses from account 3
             assert.equal(await fundSwap.amountDonated(accounts[1],accounts[3]),tokens('10'));
+
+            // checking the reward receive status for the addresses of account 2
+            assert.equal(await fundSwap.rewardReceived(accounts[1],accounts[2]),true);
+
+            // checking the reward receive status for the addresses of account 3
+            assert.equal(await fundSwap.rewardReceived(accounts[1],accounts[3]),true);
         })
     })
 })
