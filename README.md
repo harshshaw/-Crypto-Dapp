@@ -15,6 +15,8 @@
 
 ## 🤔 Challenges we faced
 - Configuring and connecting of local blockchain
+- Debugging code
+- Writing efficient and good quality smart contract without bugs
 - Compiling smart contracts with proper syntax to reduce the gas fees
 - Creating erc20 Token contract
 - Writing proper test for the smart contracts
