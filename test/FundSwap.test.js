@@ -135,59 +135,59 @@ contract('FundSwap', (accounts)=>{
         })
     })
 
-    // describe('project donation = donate()', async ()=>{
-    //     let result,projCount
-    //     before(async()=>{
+    describe('project donation = donate()', async ()=>{
+        let result,projCount
+        before(async()=>{
 
-    //         // approving Fund Swap to sell the tokens from the accounts
-    //         await cbToken.approve(fundSwap.address,tokens('500'),{from : accounts[2]});
-    //         // token selling at a fixed rate
-    //         result = await fundSwap.donate(1,accounts[1],tokens('20'),{from:accounts[2]});
-    //         // getting the project count
-    //         projCount = await fundSwap.totalProject();
-    //     })
-    //     it('donated to a project successfully but goal not completed', async () => {
+            // approving Fund Swap to sell the tokens from the accounts
+            await cbToken.approve(fundSwap.address,tokens('500'),{from : accounts[2]});
+            // token selling at a fixed rate
+            result = await fundSwap.donate(1,accounts[1],tokens('20'),{from:accounts[2]});
+            // getting the project count
+            projCount = await fundSwap.totalProject();
+        })
+        it('donated to a project successfully but goal not completed', async () => {
 
-    //         // checking the event emmitted
-    //         const event = result.logs[0].args;
-    //         assert.equal(await cbToken.balanceOf(accounts[2]),tokens('180'));
-    //         assert.equal(await cbToken.balanceOf(accounts[1]),tokens('20'));
-    //         assert.equal(event.creator,accounts[1]);
-    //         assert.equal(event.id,1);
-    //         assert.equal(event.amount.toString(),tokens('20'));
-    //         // checking the project details updated or not
-    //         const proj = await fundSwap.projects(projCount);
-    //         assert.equal(proj.creator, accounts[1]);
-    //         assert.equal(proj.goal, tokens('40'));
-    //         assert.equal(proj.currentAmount, tokens('20'));
-    //         assert.equal(proj.goalCompleted, false);
-    //         assert.equal(proj.investorRewarded, false);
-    //     })
-    //     it('donated to a project successfully but goal completed', async () => {
+            // checking the event emmitted
+            const event = result.logs[0].args;
+            assert.equal(await cbToken.balanceOf(accounts[2]),tokens('180'));
+            assert.equal(await cbToken.balanceOf(accounts[1]),tokens('20'));
+            assert.equal(event.creator,accounts[1]);
+            assert.equal(event.id,1);
+            assert.equal(event.amount.toString(),tokens('20'));
+            // checking the project details updated or not
+            const proj = await fundSwap.projects(projCount);
+            assert.equal(proj.creator, accounts[1]);
+            assert.equal(proj.goal, tokens('40'));
+            assert.equal(proj.currentAmount, tokens('20'));
+            assert.equal(proj.goalCompleted, false);
+            assert.equal(proj.investorRewarded, false);
+        })
+        it('donated to a project successfully but goal completed', async () => {
 
-    //         // before donating again current balance is 180
-    //         assert.equal(await cbToken.balanceOf(accounts[2]),tokens('180'));
-    //         result = await fundSwap.donate(1,accounts[1],tokens('20'),{from:accounts[2]});
+            // before donating again current balance is 180
+            assert.equal(await cbToken.balanceOf(accounts[2]),tokens('180'));
+            result = await fundSwap.donate(1,accounts[1],tokens('20'),{from:accounts[2]});
             
-    //         // event emmitted
-    //         const event = result.logs[0].args;
-    //         // after donation the balance will reduce to 160 than again
-    //         // for goal completing the balance will be 162
-    //         assert.equal(await cbToken.balanceOf(accounts[2]),tokens('162'));
-    //         assert.equal(await cbToken.balanceOf(accounts[1]),tokens('40'));
-    //         assert.equal(event.creator,accounts[1]);
-    //         assert.equal(event.id,1);
-    //         assert.equal(event.amount.toString(),tokens('20'));
-    //         // checking the rewarded amount for the addresses
-    //         assert.equal(await fundSwap.addressReward(accounts[2]),tokens('2'));
+            // event emmitted
+            const event = result.logs[0].args;
+            // after donation the balance will reduce to 160 than again
+            // for goal completing the balance will be 161.6
+            assert.equal(await cbToken.balanceOf(accounts[2]),tokens('161.6'));
+            assert.equal(await cbToken.balanceOf(accounts[1]),tokens('40'));
+            assert.equal(event.creator,accounts[1]);
+            assert.equal(event.id,1);
+            assert.equal(event.amount.toString(),tokens('20'));
+            // checking the rewarded amount for the addresses
+            assert.equal(await fundSwap.addressReward(accounts[1],accounts[2]),tokens('1.6'));
 
-    //         // checking the project details updated or not
-    //         const proj = await fundSwap.projects(projCount);
-    //         assert.equal(proj.creator, accounts[1]);
-    //         assert.equal(proj.goal, tokens('40'));
-    //         assert.equal(proj.currentAmount, tokens('40'));
-    //         assert.equal(proj.goalCompleted, true);
-    //         assert.equal(proj.investorRewarded, true);
-    //     })
-    // })
+            // checking the project details updated or not
+            const proj = await fundSwap.projects(projCount);
+            assert.equal(proj.creator, accounts[1]);
+            assert.equal(proj.goal, tokens('40'));
+            assert.equal(proj.currentAmount, tokens('40'));
+            assert.equal(proj.goalCompleted, true);
+            assert.equal(proj.investorRewarded, true);
+        })
+    })
 })
