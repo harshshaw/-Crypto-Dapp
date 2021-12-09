@@ -245,13 +245,17 @@ contract('FundSwap', (accounts)=>{
             assert.equal(proj2.goalCompleted, true);
             assert.equal(proj2.investorRewarded, true);
             
-            // checking the rewarded amount for the addresses
+            // checking the rewarded amount for the addresses from account 2
             assert.equal(await fundSwap.addressReward(accounts[1],accounts[2]),tokens('1.2'));
 
-            // checking the rewarded amount for the addresses
+            // checking the rewarded amount for the addresses from account 3
             assert.equal(await fundSwap.addressReward(accounts[1],accounts[3]),tokens('0.4'));
 
-            
+            // checking the amount donated for the addresses from account 2
+            assert.equal(await fundSwap.amountDonated(accounts[1],accounts[2]),tokens('30'));
+
+            // checking the amount donated for the addresses from account 3
+            assert.equal(await fundSwap.amountDonated(accounts[1],accounts[3]),tokens('10'));
         })
     })
 })
