@@ -5,7 +5,7 @@ import EthereumTrends from "./EthereumTrends";
 
 export default function ProjectDashboard() {
   return (
-    <div class="bg-white w-10/12 mx-40 my-10 height-adjuster">
+    <div class="rounded-xl bg-white w-10/12 mx-40 my-10 height-adjuster">
       <Navbar />
       <div class="flex w-full mt-5 h-5/6 justify-around">
         <EthereumTrends />
