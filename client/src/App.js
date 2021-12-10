@@ -3,8 +3,8 @@ import ExchangeDashboard from "./Components/PurchasingDashboard/ExchangeDashboar
 import ProjectsDashboard from "./Components/ShowcaseProjects/ProjectsDashboard";
 import Web3 from 'web3';
 import React, { useState, useEffect } from "react";
-import CbToken from '../src/abis/CbToken.json';
-import FundSwap from '../src/abis/FundSwap.json';
+// import CbToken from '../src/abis/CbToken.json';
+// import FundSwap from '../src/abis/FundSwap.json';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -31,26 +31,26 @@ function App() {
     const networkId = await web3.eth.net.getId();
     updateAccounts(accounts[0]);
     updateNetworkId(networkId);
-    console.log("Account 0", account);
-    console.log("Network Id", networkId);
+    // console.log("Account 0", account);
+    // console.log("Network Id", networkId);
 
-    const cbTokenData = CbToken.networks[networkId];
-    if (cbTokenData) {
-      const cbToken = new web3.eth.Contract(CbToken.abi, cbTokenData.address);
-      updatecbToken(cbToken);
-      let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
-      // updatecbTokenBalance(cbTokenBalance);
-      console.log("CbToken Balance==", cbTokenBalance);
-    }
-    const fundSwapData = FundSwap.networks[networkId];
-    if (fundSwapData) {
-      const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
-      console.log("Address===", fundSwapData.address);
-      updateFundSwap(fundSwap);
-      let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
-      // updatefundSwapBalance(fundSwapBalance);
-      console.log("FundSwap Balance==", fundSwapBalance.toString());
-    }
+    // const cbTokenData = CbToken.networks[networkId];
+    // if (cbTokenData) {
+    //   const cbToken = new web3.eth.Contract(CbToken.abi, cbTokenData.address);
+    //   updatecbToken(cbToken);
+    //   let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
+    //   // updatecbTokenBalance(cbTokenBalance);
+    //   console.log("CbToken Balance==", cbTokenBalance);
+    // }
+    // const fundSwapData = FundSwap.networks[networkId];
+    // if (fundSwapData) {
+    //   const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
+    //   console.log("Address===", fundSwapData.address);
+    //   updateFundSwap(fundSwap);
+    //   let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
+    //   // updatefundSwapBalance(fundSwapBalance);
+    //   console.log("FundSwap Balance==", fundSwapBalance.toString());
+    // }
 
   }
 
