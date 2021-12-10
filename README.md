@@ -15,13 +15,15 @@
 
 ## 🤔 Challenges we faced
 - Configuring and connecting of local blockchain
+- Debugging code
+- Writing efficient and good quality smart contract without bugs
 - Compiling smart contracts with proper syntax to reduce the gas fees
 - Creating erc20 Token contract
 - Writing proper test for the smart contracts
 
 ## 💡 Features
 - We issued our own ERC20 standard token known as Cb token
-- Investor can buy our erc20 token (Cb token)
+- Investor can buy our erc20 token (Cb token) in exchange with ethereum
 - Developer can create a project for fund raising in our platform
 - Developer can set a goal of fund they want to raise for their software/hardware projects
 - Investor can donate to the project with our Cb token
