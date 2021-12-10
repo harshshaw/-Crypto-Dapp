@@ -13,19 +13,24 @@ function App() {
   const [account, updateAccounts] = useState();
   const [validate, updateValidate] = useState(false);
   const [cbToken, updatecbToken] = useState();
+  const [fundSwap, updateFundSwap] = useState();
+  const [NetworkId, updateNetworkId] = useState();
+  // const [CbTokenBalance, updatecbTokenBalance] = useState(0);
+  // const [FundSwapBalance, updatefundSwapBalance] = useState();
 
-  useEffect(async () => {
+  useEffect(() => {
 
     loadWeb3();
     loadBlockchainData();
   }, [validate]);
 
+
   const loadBlockchainData = async () => {
-    updateValidate(false);
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
     updateAccounts(accounts[0]);
+    updateNetworkId(networkId);
     console.log("Account 0", account);
     console.log("Network Id", networkId);
 
@@ -34,20 +39,23 @@ function App() {
       const cbToken = new web3.eth.Contract(CbToken.abi, cbTokenData.address);
       updatecbToken(cbToken);
       let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
+      // updatecbTokenBalance(cbTokenBalance);
       console.log("CbToken Balance==", cbTokenBalance);
     }
     const fundSwapData = FundSwap.networks[networkId];
     if (fundSwapData) {
       const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
       console.log("Address===", fundSwapData.address);
-      updatecbToken(fundSwap);
-      // let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
-      // console.log("FundSwap Balance==", fundSwapBalance);
+      updateFundSwap(fundSwap);
+      let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
+      // updatefundSwapBalance(fundSwapBalance);
+      console.log("FundSwap Balance==", fundSwapBalance.toString());
     }
+
   }
 
   window.ethereum.on('accountsChanged', function (accounts) {
-    updateValidate(true);
+    updateValidate(!validate);
   })
 
 
@@ -70,7 +78,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<ExchangeDashboard />}></Route>
+        <Route exact path="/"
+          element={
+            <ExchangeDashboard
+              networkId={NetworkId}
+              account={account}
+            />}
+        >
+
+        </Route>
         <Route exact path="/create-project" element={<NewProject />}></Route>
         <Route
           exact

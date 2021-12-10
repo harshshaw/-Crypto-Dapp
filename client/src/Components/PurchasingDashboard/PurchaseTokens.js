@@ -1,10 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ExchangeLogo from "../../ether.png";
+import CbToken from '../../abis/CbToken.json';
+import FundSwap from '../../abis/FundSwap.json';
+import Web3 from 'web3';
 
-export default function PurchaseTokens() {
+
+export default function PurchaseTokens(props) {
+  const networkId = props.networkId;
+  const account = props.account;
   const [purchasingState, setPurchasingState] = useState("buy");
   const [transactAmount, setTransactAmount] = useState(0);
   const [equivalentAmount, setEquivalentAmount] = useState(0);
+  const [cbToken, updatecbToken] = useState();
+  const [fundSwap, updateFundSwap] = useState();
+  const [CbTokenBalance, updatecbTokenBalance] = useState(0);
+  // const [FundSwapBalance, updatefundSwapBalance] = useState();
+
+
+  useEffect(async () => {
+    await loadBlockchainData();
+  }, []);
+
+
 
   const handlePurchaseChange = (e) => {
     setPurchasingState(e.target.name);
@@ -29,16 +46,60 @@ export default function PurchaseTokens() {
     setTransactAmount(e.target.value);
   };
 
+  const loadBlockchainData = async () => {
+    const web3 = window.web3;
+    // const accounts = await web3.eth.getAccounts();
+    // const networkId = await web3.eth.net.getId();
+    // updateAccounts(accounts[0]);
+    // updateNetworkId(networkId);
+    // console.log("Account 0", account);
+    // console.log("Network Id", networkId);
+
+    const cbTokenData = CbToken.networks[networkId];
+    if (cbTokenData) {
+      const cbToken = new web3.eth.Contract(CbToken.abi, cbTokenData.address);
+      updatecbToken(cbToken);
+      let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
+      updatecbTokenBalance(cbTokenBalance);
+      console.log("CbToken Balance==", cbTokenBalance);
+    }
+    const fundSwapData = FundSwap.networks[networkId];
+    if (fundSwapData) {
+      const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
+      console.log("Address===", fundSwapData.address);
+      updateFundSwap(fundSwap);
+      let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
+      // updatefundSwapBalance(fundSwapBalance);
+      console.log("FundSwap Balance==", fundSwapBalance.toString());
+    }
+
+  }
+
+  const loadWeb3 = async () => {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    }
+    else if (window.web3) {
+      window.web3 = new Web3(window.web3.currentProvider);
+    }
+    else {
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+  }
+
+
+
   return (
     <div class="w-4/12 height-adjuster">
       <div class="flex flex-row w-full">
         <div class="flex flex-col w-5/12 items-start">
           <p class="text-xs text-red-400 font-bold">Total Reward</p>
-          <h2 class="text-3xl text-gray-500">$9,928</h2>
+          <h2 class="text-3xl text-gray-500">$900</h2>
         </div>
         <div class="flex flex-col w-5/12 items-end">
           <p class="text-xs text-green-400 font-bold">Total Balance</p>
-          <h2 class="text-3xl text-gray-500">$202,244</h2>
+          <h2 class="text-3xl text-gray-500">{CbTokenBalance}</h2>
         </div>
       </div>
       <div class="flex flex-col w-full h-full pt-14 space-y-7">
