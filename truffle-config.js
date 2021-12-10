@@ -10,7 +10,7 @@ module.exports = {
     },
   },
   contracts_directory: './src/contracts/',
-  contracts_build_directory: './src/abis/',
+  contracts_build_directory: './client/src/abis/',
   compilers: {
     solc: {
       optimizer: {
