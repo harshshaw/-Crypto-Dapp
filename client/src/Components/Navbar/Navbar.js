@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Logo from "../../wheelbarrow.png";
 
 export default function Navbar() {
@@ -14,12 +15,12 @@ export default function Navbar() {
 
           <nav class="w-6/12 md:flex space-x-10">
             <div class="flex space-x-1">
-              <a
-                href="#"
+              <Link
+                to="/show-projects"
                 class="text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 Show Projects
-              </a>
+              </Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -36,12 +37,12 @@ export default function Navbar() {
               </svg>
             </div>
             <div class="flex space-x-1">
-              <a
-                href="#"
+              <Link
+                to="/create-project"
                 class="text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 Create a project
-              </a>
+              </Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -58,12 +59,12 @@ export default function Navbar() {
               </svg>
             </div>
             <div class="flex space-x-1">
-              <a
-                href="#"
+              <Link
+                to="/"
                 class="text-base font-medium text-gray-500 hover:text-gray-900"
               >
                 Exchange Tokens
-              </a>
+              </Link>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"

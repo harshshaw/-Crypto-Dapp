@@ -80,6 +80,11 @@ export default function OrganizationData() {
           />
         </div>
       </div>
+      <div class="flex justify-center mt-2">
+        <button class="text-center w-5/12 px-4 py-2 text-white bg-blue-500 hover:bg-green-700 transition duration-500 ease-in-out">
+          Create a project
+        </button>
+      </div>
     </div>
   );
 }
