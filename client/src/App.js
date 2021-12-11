@@ -91,7 +91,10 @@ function App() {
         >
 
         </Route>
-        <Route exact path="/create-project" element={<NewProject />}></Route>
+        <Route exact path="/create-project" element={<NewProject 
+          networkId={NetworkId}
+          account={account}
+        />}></Route>
         <Route
           exact
           path="/show-projects"
