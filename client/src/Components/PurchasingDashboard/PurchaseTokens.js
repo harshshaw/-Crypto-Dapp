@@ -22,6 +22,13 @@ export default function PurchaseTokens(props) {
   }, []);
 
 
+  function tokens(n) {
+    return window.web3.utils.toWei(n, 'ether');
+  }
+
+  function tokensFromWei(n) {
+
+  }
 
   const handlePurchaseChange = (e) => {
     setPurchasingState(e.target.name);
@@ -46,6 +53,29 @@ export default function PurchaseTokens(props) {
     setTransactAmount(e.target.value);
   };
 
+  // this.state.ethSwap.methods.buyTokens().send({ value: etherAmount, from: this.state.account }).on('transactionHash', (hash) => {
+  //   this.setState({ loading: false })
+  // })
+
+
+  const transact = async (e) => {
+    console.log("Inside");
+    if (purchasingState == "buy") {
+      // const fundSwapData = FundSwap.networks[networkId];
+      // const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
+      fundSwap.methods.buycbTokens().send({ from: account, value: tokens(`${transactAmount}`) }).on('transactionHash', (hash) => {
+        console.log("hash===", hash);
+      });
+      const investorBalance = await cbToken.methods.balanceOf(account).call();
+      console.log("Investor Balance===", investorBalance);
+
+    }
+
+    // else{
+    //   cbToken.
+    // }
+  }
+
   const loadBlockchainData = async () => {
     const web3 = window.web3;
     // const accounts = await web3.eth.getAccounts();
@@ -61,16 +91,16 @@ export default function PurchaseTokens(props) {
       updatecbToken(cbToken);
       let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
       updatecbTokenBalance(cbTokenBalance);
-      console.log("CbToken Balance==", cbTokenBalance);
+      // console.log("CbToken Balance==", cbTokenBalance);
     }
     const fundSwapData = FundSwap.networks[networkId];
     if (fundSwapData) {
       const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
-      console.log("Address===", fundSwapData.address);
+      // console.log("Address===", fundSwapData.address);
       updateFundSwap(fundSwap);
       let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
       // updatefundSwapBalance(fundSwapBalance);
-      console.log("FundSwap Balance==", fundSwapBalance.toString());
+      // console.log("FundSwap Balance==", fundSwapBalance.toString());
     }
 
   }
@@ -89,6 +119,8 @@ export default function PurchaseTokens(props) {
   }
 
 
+
+  console.log("TransactAmount==", transactAmount);
 
   return (
     <div class="w-4/12 height-adjuster">
@@ -154,7 +186,9 @@ export default function PurchaseTokens(props) {
           />
         </div>
         <div class="flex w-10/12 pt-5">
-          <button class="transition duration-500 ease-in-out bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-4 w-full">
+          <button
+            class="transition duration-500 ease-in-out bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-4 w-full"
+            onClick={() => transact()}>
             Transact
           </button>
         </div>
