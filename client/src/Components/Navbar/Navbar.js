@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../wheelbarrow.png";
 
-export default function Navbar() {
+export default function Navbar(props) {
+  // const [account, setAccounts] = useState()
+  const account = props.account;
+
   return (
     <div class="relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -86,7 +89,7 @@ export default function Navbar() {
               href="#"
               class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
             >
-              1BoatSLRHtKNngkdXEeobR76b53LETtpyT
+              {account}
             </a>
           </div>
         </div>

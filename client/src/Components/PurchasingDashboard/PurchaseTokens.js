@@ -8,6 +8,7 @@ import Web3 from 'web3';
 export default function PurchaseTokens(props) {
   const networkId = props.networkId;
   const account = props.account;
+  // const [value, updateVal] = useState(0);
   const [purchasingState, setPurchasingState] = useState("buy");
   const [transactAmount, setTransactAmount] = useState(0);
   const [equivalentAmount, setEquivalentAmount] = useState(0);
@@ -19,15 +20,19 @@ export default function PurchaseTokens(props) {
 
   useEffect(async () => {
     await loadBlockchainData();
-  }, []);
+  }, [account]);
 
+  // window.ethereum.on('accountsChanged', function (accounts) {
+  //   console.log("account changed")
+  //   updateVal(1);
+  // })
 
   function tokens(n) {
     return window.web3.utils.toWei(n, 'ether');
   }
 
-  function tokensFromWei(n) {
-
+  function fromwei(n){
+    return window.web3.utils.fromWei(n, 'ether');
   }
 
   const handlePurchaseChange = (e) => {
@@ -63,11 +68,14 @@ export default function PurchaseTokens(props) {
     if (purchasingState == "buy") {
       // const fundSwapData = FundSwap.networks[networkId];
       // const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
-      fundSwap.methods.buycbTokens().send({ from: account, value: tokens(`${transactAmount}`) }).on('transactionHash', (hash) => {
+      const result = await fundSwap.methods.buycbTokens().send({ from: account, value: tokens(`${transactAmount}`) }).on('transactionHash', (hash) => {
         console.log("hash===", hash);
       });
       const investorBalance = await cbToken.methods.balanceOf(account).call();
+      updatecbTokenBalance(fromwei(`${investorBalance}`));
       console.log("Investor Balance===", investorBalance);
+      // updateVal(1);
+      // window.location.reload()
 
     }
 
@@ -90,19 +98,19 @@ export default function PurchaseTokens(props) {
       const cbToken = new web3.eth.Contract(CbToken.abi, cbTokenData.address);
       updatecbToken(cbToken);
       let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
-      updatecbTokenBalance(cbTokenBalance);
-      // console.log("CbToken Balance==", cbTokenBalance);
+      updatecbTokenBalance(fromwei(`${cbTokenBalance}`));
+      console.log("CbToken Balance==", cbTokenBalance);
     }
     const fundSwapData = FundSwap.networks[networkId];
     if (fundSwapData) {
       const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
       // console.log("Address===", fundSwapData.address);
       updateFundSwap(fundSwap);
-      let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
+      // let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
       // updatefundSwapBalance(fundSwapBalance);
       // console.log("FundSwap Balance==", fundSwapBalance.toString());
     }
-
+    // updateVal(0)
   }
 
   const loadWeb3 = async () => {
@@ -120,7 +128,7 @@ export default function PurchaseTokens(props) {
 
 
 
-  console.log("TransactAmount==", transactAmount);
+  // console.log("TransactAmount==", transactAmount);
 
   return (
     <div class="w-4/12 height-adjuster">

@@ -18,11 +18,11 @@ function App() {
   // const [CbTokenBalance, updatecbTokenBalance] = useState(0);
   // const [FundSwapBalance, updatefundSwapBalance] = useState();
 
-  useEffect(() => {
+  useEffect( async () => {
 
-    loadWeb3();
-    loadBlockchainData();
-  }, [validate]);
+    await loadWeb3();
+    await loadBlockchainData();
+  }, [0]);
 
 
   const loadBlockchainData = async () => {
@@ -31,7 +31,8 @@ function App() {
     const networkId = await web3.eth.net.getId();
     updateAccounts(accounts[0]);
     updateNetworkId(networkId);
-    // console.log("Account 0", account);
+    console.log("Account 0", account);
+    // updateValidate(false)
     // console.log("Network Id", networkId);
 
     // const cbTokenData = CbToken.networks[networkId];
@@ -55,7 +56,10 @@ function App() {
   }
 
   window.ethereum.on('accountsChanged', function (accounts) {
-    updateValidate(!validate);
+    // console.log("hello")
+    console.log(accounts)
+    updateAccounts(accounts[0]);
+    // updateValidate(!validate);
   })
 
 
