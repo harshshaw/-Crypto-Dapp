@@ -9,21 +9,22 @@ import {
 
 export default function Project({ data }) {
   return (
-    <div class="flex flex-col w-3/12 mb-4 mx-14 max-h-96 overflow-y-auto border border-indigo-600">
-      <img src={data.thumbnail} class="h-52" />
+    // <div class="flex flex-col w-12/12 mb-4 mx-14 max-h-96 overflow-y-auto border border-indigo-600">
+    <div class="flex flex-col w-12/12 mb-4 mx-14 max-h-96 overflow-hidden border border-indigo-600">
+      {/* <img src={data.thumbnail} class="h-52" /> */}
       <h2 class="text-center text-xl">{data.title.toUpperCase()}</h2>
-      <p class="text-right mr-16 text-gray-400">~ {data.orgName}</p>
+      {/* <p class="text-right mr-16 text-gray-400">~ {data.orgName}</p> */}
       <p class="p-2 text-gray-500">{data.projectDescription}</p>
       <div class="flex justify-around px-4 py-2 text-xl">
+        {/* <a href={data.links.organizationLink}>
+          <FontAwesomeIcon color="blue" icon={faBuilding} />
+        </a> */}
         <a href={data.links.projectLink}>
           <FontAwesomeIcon color="purple" icon={faProjectDiagram} />
         </a>
-        <a href={data.links.organizationLink}>
-          <FontAwesomeIcon color="blue" icon={faBuilding} />
-        </a>
-        <a href={data.links.blogLink}>
+        {/* <a href={data.links.blogLink}>
           <FontAwesomeIcon color="green" icon={faBlog} />
-        </a>
+        </a> */}
       </div>
       <div class="flex justify-around mt-3">
         <div class="flex flex-col">
@@ -44,7 +45,7 @@ export default function Project({ data }) {
           value=""
           placeholder="Enter Amount"
         ></input>
-        <button class="w-6/12 text-white rounded-lg bg-red-700 p-3">
+        <button class="w-4/12 text-white rounded-lg bg-red-700 p-3">
           Donate
         </button>
       </div>
