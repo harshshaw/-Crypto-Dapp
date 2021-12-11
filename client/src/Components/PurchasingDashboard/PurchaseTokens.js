@@ -61,15 +61,18 @@ export default function PurchaseTokens(props) {
   // this.state.ethSwap.methods.buyTokens().send({ value: etherAmount, from: this.state.account }).on('transactionHash', (hash) => {
   //   this.setState({ loading: false })
   // })
+  // this.state.token.methods.approve(this.state.ethSwap.address, tokenAmount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+  //   this.state.ethSwap.methods.sellTokens(tokenAmount).send({ from: this.state.account }).on('transactionHash', (hash) => {
+  //     this.setState({ loading: false })
+  //   })
+  // })
 
 
   const transact = async (e) => {
     console.log("Inside");
     if (purchasingState == "buy") {
-      // const fundSwapData = FundSwap.networks[networkId];
-      // const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
       const result = await fundSwap.methods.buycbTokens().send({ from: account, value: tokens(`${transactAmount}`) }).on('transactionHash', (hash) => {
-        console.log("hash===", hash);
+        // console.log("hash===", hash);
       });
       const investorBalance = await cbToken.methods.balanceOf(account).call();
       updatecbTokenBalance(fromwei(`${investorBalance}`));
@@ -78,10 +81,20 @@ export default function PurchaseTokens(props) {
       // window.location.reload()
 
     }
+    else if (purchasingState == "sell") {
+      console.log(transactAmount);
+      const result = await cbToken.methods.approve(FundSwap.networks[networkId].address,tokens(`${transactAmount}`)).send({from: account}).on('transactionHash', async (hash)=>{
+        await fundSwap.methods.sellcbTokens(tokens(`${transactAmount}`)).send({from: account}).on('transactionHash', async (transHash)=>{
+          // console.log(transHash);
+          const investorBalance = await cbToken.methods.balanceOf(account).call();
+          updatecbTokenBalance(fromwei(`${investorBalance}`));
+        })
+      })
+      // const investorBalance = await cbToken.methods.balanceOf(account).call();
+      // updatecbTokenBalance(fromwei(`${investorBalance}`));
+      // console.log("Investor Balance===", investorBalance);
 
-    // else{
-    //   cbToken.
-    // }
+    }
   }
 
   const loadBlockchainData = async () => {
@@ -130,7 +143,7 @@ export default function PurchaseTokens(props) {
 
 
 
-  // console.log("TransactAmount==", transactAmount);
+  console.log("TransactAmount==", transactAmount);
 
   return (
     <div class="w-4/12 height-adjuster">

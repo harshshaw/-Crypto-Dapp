@@ -57,7 +57,7 @@ function App() {
 
   window.ethereum.on('accountsChanged', function (accounts) {
     // console.log("hello")
-    console.log(accounts)
+    // console.log(accounts)
     updateAccounts(accounts[0]);
     // updateValidate(!validate);
   })
