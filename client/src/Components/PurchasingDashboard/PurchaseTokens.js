@@ -15,7 +15,7 @@ export default function PurchaseTokens(props) {
   const [cbToken, updatecbToken] = useState();
   const [fundSwap, updateFundSwap] = useState();
   const [CbTokenBalance, updatecbTokenBalance] = useState(0);
-  // const [FundSwapBalance, updatefundSwapBalance] = useState();
+  const [rewardBalance, updaterewardBalance] = useState();
 
 
   useEffect(async () => {
@@ -106,6 +106,8 @@ export default function PurchaseTokens(props) {
       const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
       // console.log("Address===", fundSwapData.address);
       updateFundSwap(fundSwap);
+      let rewardBalance =await fundSwap.methods.totalReward(account).call();
+      updaterewardBalance(fromwei(`${rewardBalance}`))
       // let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
       // updatefundSwapBalance(fundSwapBalance);
       // console.log("FundSwap Balance==", fundSwapBalance.toString());
@@ -135,7 +137,7 @@ export default function PurchaseTokens(props) {
       <div class="flex flex-row w-full">
         <div class="flex flex-col w-5/12 items-start">
           <p class="text-xs text-red-400 font-bold">Total Reward</p>
-          <h2 class="text-3xl text-gray-500">$900</h2>
+          <h2 class="text-3xl text-gray-500">{rewardBalance}</h2>
         </div>
         <div class="flex flex-col w-5/12 items-end">
           <p class="text-xs text-green-400 font-bold">Total Balance</p>
