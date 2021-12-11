@@ -8,7 +8,6 @@ import Web3 from 'web3';
 export default function PurchaseTokens(props) {
   const networkId = props.networkId;
   const account = props.account;
-  // const [value, updateVal] = useState(0);
   const [purchasingState, setPurchasingState] = useState("buy");
   const [transactAmount, setTransactAmount] = useState(0);
   const [equivalentAmount, setEquivalentAmount] = useState(0);
@@ -22,10 +21,6 @@ export default function PurchaseTokens(props) {
     await loadBlockchainData();
   }, [account]);
 
-  // window.ethereum.on('accountsChanged', function (accounts) {
-  //   console.log("account changed")
-  //   updateVal(1);
-  // })
 
   function tokens(n) {
     return window.web3.utils.toWei(n, 'ether');
@@ -58,15 +53,6 @@ export default function PurchaseTokens(props) {
     setTransactAmount(e.target.value);
   };
 
-  // this.state.ethSwap.methods.buyTokens().send({ value: etherAmount, from: this.state.account }).on('transactionHash', (hash) => {
-  //   this.setState({ loading: false })
-  // })
-  // this.state.token.methods.approve(this.state.ethSwap.address, tokenAmount).send({ from: this.state.account }).on('transactionHash', (hash) => {
-  //   this.state.ethSwap.methods.sellTokens(tokenAmount).send({ from: this.state.account }).on('transactionHash', (hash) => {
-  //     this.setState({ loading: false })
-  //   })
-  // })
-
 
   const transact = async (e) => {
     console.log("Inside");
@@ -76,9 +62,6 @@ export default function PurchaseTokens(props) {
       });
       const investorBalance = await cbToken.methods.balanceOf(account).call();
       updatecbTokenBalance(fromwei(`${investorBalance}`));
-      console.log("Investor Balance===", investorBalance);
-      // updateVal(1);
-      // window.location.reload()
 
     }
     else if (purchasingState == "sell") {
@@ -90,9 +73,6 @@ export default function PurchaseTokens(props) {
           updatecbTokenBalance(fromwei(`${investorBalance}`));
         })
       })
-      // const investorBalance = await cbToken.methods.balanceOf(account).call();
-      // updatecbTokenBalance(fromwei(`${investorBalance}`));
-      // console.log("Investor Balance===", investorBalance);
 
     }
   }
