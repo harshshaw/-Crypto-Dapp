@@ -8,9 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Project({ data }) {
-  console.log(data);
   return (
-    <div class="flex flex-col w-3/12 mb-4 mx-14 max-h-96 overflow-y-auto">
+    <div class="flex flex-col w-3/12 mb-4 mx-14 max-h-96 overflow-y-auto border border-indigo-600">
       <img src={data.thumbnail} class="h-52" />
       <h2 class="text-center text-xl">{data.title.toUpperCase()}</h2>
       <p class="text-right mr-16 text-gray-400">~ {data.orgName}</p>
@@ -38,12 +37,17 @@ export default function Project({ data }) {
           </div>
         </div>
       </div>
-      <button class="rounded-lg w-6/12 ml-16 bg-red-700 p-3 my-5 flex items-center justify-around">
-        <div class="text-lg">
-          <FontAwesomeIcon color="white" icon={faDonate} />
-        </div>
-        <div class="text-white text-xl">Donate</div>
-      </button>
+      <div class="flex mt-9 mb-4 p-2">
+        <input
+          class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-6/12 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+          type="number"
+          value=""
+          placeholder="Enter Amount"
+        ></input>
+        <button class="w-6/12 text-white rounded-lg bg-red-700 p-3">
+          Donate
+        </button>
+      </div>
     </div>
   );
 }

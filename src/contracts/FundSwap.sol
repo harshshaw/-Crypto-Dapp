@@ -27,6 +27,9 @@ contract FundSwap{
     // mapping for storing addresses of who donated to whom 
     mapping(address =>address[]) public addressInvestor;
 
+    // rewarded total amount of cb token for the investor 
+    mapping( address => uint) public totalReward;
+
     // to get the number of amount in cb token for the 
     // reward received on a project goal completion
     mapping(address => mapping(address => uint)) public addressReward;
@@ -136,6 +139,7 @@ contract FundSwap{
                     cbToken.transfer(addressInvestor[_creator][i],amountDonated[_creator][addressInvestor[_creator][i]]*4/100);
                     addressReward[_creator][addressInvestor[_creator][i]] += amountDonated[_creator][addressInvestor[_creator][i]]*4/100;
                     rewardReceived[_creator][addressInvestor[_creator][i]] = true;
+                    totalReward[addressInvestor[_creator][i]] += amountDonated[_creator][addressInvestor[_creator][i]]*4/100;
                 }
             }
             // investor rewarded
