@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ProjectsSeedData from "./ProjectsSeedData";
 import Project from "./Project";
 import CbToken from '../../abis/CbToken.json';
 import FundSwap from '../../abis/FundSwap.json';
 import Navbar from "../Navbar/Navbar";
-import {
-  faProjectDiagram,
-  faBuilding,
-  faBlog,
-  faDonate,
-} from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ProjectsDashboard(props) {
@@ -18,7 +11,7 @@ export default function ProjectsDashboard(props) {
 
 
   const networkId = props.networkId;
-  const account = props.account;
+  // const account = props.account;
   const [n, setN] = useState(false);
   const [cbToken, updatecbToken] = useState();
   const [fundSwap, updateFundSwap] = useState();
@@ -29,8 +22,7 @@ export default function ProjectsDashboard(props) {
 
 
   useEffect(async () => {
-    // for(let i=0;i<80;i++)
-      loadBlockchainData();
+    loadBlockchainData();
   }, [n]);
 
   function tokens(n) {
@@ -52,24 +44,14 @@ export default function ProjectsDashboard(props) {
       const num = await fundSwap.methods.totalProject().call();
       setTotalProject(num);
       console.log(totalProject)
-      // let proj = await fundSwap.methods.projects(totalProject).call();
-      // console.log(proj)
       let row = []
       for(let i = 1; i <= totalProject; i++) {
         let proj = await fundSwap.methods.projects(i).call();
-        // console.log(proj)
-        // rows.push(<Project
-        //   data={proj} 
-        //   networkId={props.networkId}
-        //   account={props.account}
-        // />);
         row.push(proj);
       }
       setRows(row)
     }
     setN(true)
-    // console.log(rows[0])
-    // console.log(rows[0].projectName)
   }
   
 

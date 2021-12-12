@@ -79,12 +79,6 @@ export default function PurchaseTokens(props) {
 
   const loadBlockchainData = async () => {
     const web3 = window.web3;
-    // const accounts = await web3.eth.getAccounts();
-    // const networkId = await web3.eth.net.getId();
-    // updateAccounts(accounts[0]);
-    // updateNetworkId(networkId);
-    // console.log("Account 0", account);
-    // console.log("Network Id", networkId);
 
     const cbTokenData = CbToken.networks[networkId];
     if (cbTokenData) {
@@ -97,15 +91,10 @@ export default function PurchaseTokens(props) {
     const fundSwapData = FundSwap.networks[networkId];
     if (fundSwapData) {
       const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
-      // console.log("Address===", fundSwapData.address);
       updateFundSwap(fundSwap);
       let rewardBalance =await fundSwap.methods.totalReward(account).call();
       updaterewardBalance(fromwei(`${rewardBalance}`))
-      // let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
-      // updatefundSwapBalance(fundSwapBalance);
-      // console.log("FundSwap Balance==", fundSwapBalance.toString());
     }
-    // updateVal(0)
   }
 
   const loadWeb3 = async () => {

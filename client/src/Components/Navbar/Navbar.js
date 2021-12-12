@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Logo from "../../wheelbarrow.png";
 
 export default function Navbar(props) {
-  // const [account, setAccounts] = useState()
   const account = props.account;
 
   return (

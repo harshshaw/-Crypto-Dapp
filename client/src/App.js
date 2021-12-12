@@ -31,35 +31,10 @@ function App() {
     const networkId = await web3.eth.net.getId();
     updateAccounts(accounts[0]);
     updateNetworkId(networkId);
-    console.log("Account 0", account);
-    // updateValidate(false)
-    // console.log("Network Id", networkId);
-
-    // const cbTokenData = CbToken.networks[networkId];
-    // if (cbTokenData) {
-    //   const cbToken = new web3.eth.Contract(CbToken.abi, cbTokenData.address);
-    //   updatecbToken(cbToken);
-    //   let cbTokenBalance = await cbToken.methods.balanceOf(account).call();
-    //   // updatecbTokenBalance(cbTokenBalance);
-    //   console.log("CbToken Balance==", cbTokenBalance);
-    // }
-    // const fundSwapData = FundSwap.networks[networkId];
-    // if (fundSwapData) {
-    //   const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
-    //   console.log("Address===", fundSwapData.address);
-    //   updateFundSwap(fundSwap);
-    //   let fundSwapBalance = await cbToken.methods.balanceOf(fundSwapData.address).call();
-    //   // updatefundSwapBalance(fundSwapBalance);
-    //   console.log("FundSwap Balance==", fundSwapBalance.toString());
-    // }
-
   }
 
   window.ethereum.on('accountsChanged', function (accounts) {
-    // console.log("hello")
-    // console.log(accounts)
     updateAccounts(accounts[0]);
-    // updateValidate(!validate);
   })
 
 

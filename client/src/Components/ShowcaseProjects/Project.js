@@ -17,10 +17,6 @@ export default function Project(props) {
   const [cbToken, updatecbToken] = useState();
   const [fundSwap, updateFundSwap] = useState();
   const [amount, updateAmount] = useState();
-  // const [name,setName] = useState()
-  // const [link, setLink] = useState()
-  // const [description, setdescription] = useState()
-  // const [goal, setGoal] = useState()
 
   useEffect(async () => {
     await loadBlockchainData();
@@ -46,18 +42,11 @@ export default function Project(props) {
       const fundSwap = new web3.eth.Contract(FundSwap.abi, fundSwapData.address);
       updateFundSwap(fundSwap);
     }
-    // console.log(account)
-    console.log(props.data)
-    // console.log(id)
   }
 
   const transact = async()=> {
     const result = await cbToken.methods.approve(FundSwap.networks[networkId].address,tokens(`${amount}`)).send({from: account}).on('transactionHash', async (hash)=>{
-      await fundSwap.methods.donate(id,props.data.creator,tokens(`${amount}`)).send({from: account}).on('transactionHash',(transHash)=>{
-        // console.log(transHash);
-        // const investorBalance = await cbToken.methods.balanceOf(account).call();
-        // updatecbTokenBalance(fromwei(`${investorBalance}`));
-      })
+      await fundSwap.methods.donate(id,props.data.creator,tokens(`${amount}`)).send({from: account}).on('transactionHash',(transHash)=>{})
     })
   }
 

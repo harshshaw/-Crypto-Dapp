@@ -39,13 +39,9 @@ export default function NewProject(props) {
     }
   }
   const createProj= async ()=>{
-    const result = await fundSwap.methods.createProject(name,description,link,tokens(`${goal}`)).send({from : account}).on('transactioinHash',(hash)=>{
-      // console.log(hash)
-    });
+    const result = await fundSwap.methods.createProject(name,description,link,tokens(`${goal}`)).send({from : account}).on('transactioinHash',(hash)=>{});
     const num = await fundSwap.methods.totalProject().call();
-    // console.log(num)
     const proj = await fundSwap.methods.projects(num).call(); 
-    // console.log(proj)
   }
 
   return (
