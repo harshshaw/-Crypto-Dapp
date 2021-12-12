@@ -19,6 +19,7 @@ export default function ProjectsDashboard(props) {
 
   const networkId = props.networkId;
   const account = props.account;
+  const [n, setN] = useState(false);
   const [cbToken, updatecbToken] = useState();
   const [fundSwap, updateFundSwap] = useState();
   const [totalProject, setTotalProject] = useState();
@@ -28,8 +29,9 @@ export default function ProjectsDashboard(props) {
 
 
   useEffect(async () => {
-    await loadBlockchainData();
-  }, [account]);
+    // for(let i=0;i<80;i++)
+      loadBlockchainData();
+  }, [n]);
 
   function tokens(n) {
     return window.web3.utils.toWei(n, 'ether');
@@ -65,6 +67,7 @@ export default function ProjectsDashboard(props) {
       }
       setRows(row)
     }
+    setN(true)
     // console.log(rows[0])
     // console.log(rows[0].projectName)
   }
