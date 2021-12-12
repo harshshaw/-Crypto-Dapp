@@ -130,11 +130,11 @@ export default function PurchaseTokens(props) {
       <div class="flex flex-row w-full">
         <div class="flex flex-col w-5/12 items-start">
           <p class="text-xs text-red-400 font-bold">Total Reward</p>
-          <h2 class="text-3xl text-gray-500">{rewardBalance}</h2>
+          <h2 class="text-3xl text-gray-500">{`${rewardBalance} Cb`}</h2>
         </div>
         <div class="flex flex-col w-5/12 items-end">
           <p class="text-xs text-green-400 font-bold">Total Balance</p>
-          <h2 class="text-3xl text-gray-500">{CbTokenBalance}</h2>
+          <h2 class="text-3xl text-gray-500">{`${CbTokenBalance} Cb`}</h2>
         </div>
       </div>
       <div class="flex flex-col w-full h-full pt-14 space-y-7">
