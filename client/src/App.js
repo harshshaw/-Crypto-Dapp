@@ -98,7 +98,10 @@ function App() {
         <Route
           exact
           path="/show-projects"
-          element={<ProjectsDashboard />}
+          element={<ProjectsDashboard
+            networkId={NetworkId}
+            account={account}
+          />}
         ></Route>
       </Routes>
     </Router>
