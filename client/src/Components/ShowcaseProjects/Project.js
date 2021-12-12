@@ -62,8 +62,7 @@ export default function Project(props) {
   }
 
   return (
-    // <div class="flex flex-col w-12/12 mb-4 mx-14 max-h-96 overflow-y-auto border border-indigo-600">
-    <div class="flex flex-col w-12/12 mb-4 mx-14 max-h-96 overflow-hidden border border-indigo-600">
+    <div class="flex flex-col w-12/12 mb-4 mx-14 max-h-96 overflow-y-auto border border-indigo-600">
       {/* <img src={data.thumbnail} class="h-52" /> */}
       {/* <p>{id}</p> */}
       <h2 class="text-center text-xl">{props.data.projectName.toUpperCase()}</h2>
